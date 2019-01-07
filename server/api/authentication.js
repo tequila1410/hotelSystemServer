@@ -4,7 +4,6 @@ var jwt = require('jsonwebtoken');
 var auth = require('../services/security');
 var Cookie = require('cookies');
 var router = express.Router();
-
 const cookieKey = "jwt";
 const jwtSecret = "HelloWorld";
 

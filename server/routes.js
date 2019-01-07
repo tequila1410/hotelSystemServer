@@ -3,12 +3,6 @@ const express = require('express');
 const router = express.Router();
 const log = require('./services/logger').log;
 
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  log.info("Get index html");
-  res.sendFile(path.join(__dirname, "html/index.html"));
-});
-
 module.exports.configure = function (app) {
   app.use(router);
   app.use(require("./api/authentication.js"));
