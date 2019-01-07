@@ -25,7 +25,7 @@ router.post('/auth/login', auth.authentication, function (req, res) {
 router.post('/auth/logout', function (req, res) {
     var cookies = new Cookie(req, res);
     cookies.set(cookieKey, "");
-    res.send({
+    res.json({
         msg: 'Session ended'
     })
 
@@ -35,9 +35,15 @@ router.get('/auth/verifyAuthentication', function (req, res) {
     var cookies = new Cookie(req, res);
     var token = cookies.get(cookieKey);
     if (token) {
-        res.status(200).send('Authentication verified.');
+        res.status(200).json({
+            isVerified: true,
+	        msg: 'Auth verified.'
+        });
     } else {
-        res.status(403).send('Authentication NOT verified.');
+        res.status(403).json({
+	        isVerified: false,
+	        msg: 'Auth required!'
+        });
     }
 });
 
