@@ -1,0 +1,141 @@
+<div class="booking-toggle">
+    <form class="form-inline" role="form">
+        <div class="form-group">
+            <button type="submit" class="btn btn-default" data-bind="click: changeToggle, enable: !toggle(), css: {current: toggle()}">Список текущих заявок</button>
+            <button type="submit" class="btn btn-default" data-bind="click: changeToggle, enable: toggle, css: {current: !toggle()}">Список всех заявок</button>
+        </div>
+    </form>
+</div>
+<div>
+    <aside class="booking-left-side" data-bind="visible: toggle()">
+        <table class="table table-bordered" data-bind="visible: bookings().length > 0">
+            <thead class="text-center">
+                <tr>
+                    <th width="10%" class="text-center">Номер</th>
+                    <th width="40%" class="text-center">ФИО</th>
+                    <th width="20%" class="text-center">Дата заселения</th>
+                    <th width="20%" class="text-center">Дата выселения</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-center" data-bind="foreach: bookings">
+                <tr>
+                    <td width="10%" data-bind="click: $root.showInfo, text: number"></td>
+                    <td width="40%" data-bind="click: $root.showInfo, text: name"></td>
+                    <td width="20%" data-bind="click: $root.showInfo, text: dateCheck"></td>
+                    <td width="20%" data-bind="click: $root.showInfo, text: dateEviction"></td>
+                </tr>
+            </tbody>
+        </table>
+        <h3 data-bind="visible: bookings().length == 0">Все комнаты свободны!</h3>
+    </aside>
+    <aside class="booking-left-side" data-bind="visible: !toggle()">
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <p class="filter-col">Дата: </p>
+                <input type="date" id="searchValue" class="form-control">
+                <button type="submit" class="btn btn-default" data-bind="click: find">Найти</button>
+            </div>
+        </form>
+        <table class="table table-bordered">
+            <thead class="text-center">
+                <tr>
+                    <th width="10%" class="text-center">Номер</th>
+                    <th width="40%" class="text-center">ФИО</th>
+                    <th width="20%" class="text-center">Дата заселения</th>
+                    <th width="20%" class="text-center">Дата выселения</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-center" data-bind="foreach: allBookings">
+                <tr>
+                    <td width="10%" data-bind="click: $root.showInfo, text: number"></td>
+                    <td width="40%" data-bind="click: $root.showInfo, text: name"></td>
+                    <td width="20%" data-bind="click: $root.showInfo, text: dateCheck"></td>
+                    <td width="20%" data-bind="click: $root.showInfo, text: dateEviction"></td>
+                </tr>
+            </tbody>
+        </table>
+    </aside>
+    <aside class="booking-right-side">
+        <blockquote data-bind="visible: showAdditionalInfo">
+            <h2>Детальная информация</h2>
+            <div name="tabs">
+                <ul>
+                    <li><a href="#infoTab">Общая информция</a></li>
+                    <li><a href="#roomTab">Комната</a></li>
+                    <li><a href="#clientTab">Посетитель</a></li>
+                </ul>
+                <div id="infoTab">
+                    <p class="lead">Номер:
+                        <p class="lead" data-bind="text: infoTab().number"></p>
+                    </p><br><br>
+                    <p class="lead">Посетитель:
+                        <p class="lead" data-bind="text: infoTab().client"></p>
+                    </p><br><br>
+                    <p class="lead">Дата заселения:
+                        <p class="lead" data-bind="text: infoTab().dateCheck"></p>
+                    </p><br><br>
+                    <p class="lead">Дата выселения:
+                        <p class="lead" data-bind="text: infoTab().dateEviction"></p>
+                    </p><br><br>
+                    <p class="lead">Количество дней:
+                        <p class="lead" data-bind="text: infoTab().countDays"></p>
+                    </p><br><br>
+                    <p class="lead">Количество жильцов:
+                        <p class="lead" data-bind="text: infoTab().countClients"></p>
+                    </p><br><br>
+                    <p class="lead">Стоимость проживания:
+                        <p class="lead" data-bind="text: infoTab().price"></p> грн.</p><br><br>
+                    <p class="lead">Статус:
+                        <p class="lead" data-bind="text: infoTab().status, style: {color: activeOrder() ? 'green' : 'red'}"></p>
+                    </p>
+                </div>
+                <div id="roomTab">
+                    <p class="lead">Номер:
+                        <p class="lead" data-bind="text: roomTab().number"></p>
+                    </p><br><br>
+                    <p class="lead">Категория:
+                        <p class="lead" data-bind="text: roomTab().category"></p>
+                    </p><br><br>
+                    <p class="lead">Кол-во мест:
+                        <p class="lead" data-bind="text: roomTab().seats"></p>
+                    </p><br><br>
+                    <p class="lead">Статус:
+                        <p class="lead" data-bind="text: roomTab().status, style: {color: emptyRoom() ? 'green' : 'red'}"></p>
+                    </p><br><br>
+                    <p class="lead">Кол-во посещений:
+                        <p class="lead" data-bind="text: roomTab().countVisits"></p>
+                    </p><br><br>
+                    <p class="lead">Цена:
+                        <p class="lead" data-bind="text: roomTab().price"></p> грн.</p><br><br>
+                </div>
+                <div id="clientTab">
+                    <p class="lead">Имя:
+                        <p class="lead" data-bind="text: clientTab().name"></p>
+                    </p>
+                    <br> <br>
+                    <p class="lead">Паспорт:
+                        <p class="lead" data-bind="text: clientTab().passport"></p>
+                    </p>
+                    <br> <br>
+                    <p class="lead">Телефон:
+                        <p class="lead" data-bind="text: clientTab().phone"></p>
+                    </p>
+                    <br> <br>
+                    <p class="lead">Дата рождения:
+                        <p class="lead" data-bind="text: clientTab().bdate"></p>
+                    </p>
+                    <br> <br>
+                    <p class="lead">Адрес:
+                        <p class="lead" data-bind="text: clientTab().address"></p>
+                    </p>
+                    <br> <br>
+                    <p class="lead">Кол-во посищений:
+                        <p class="lead" data-bind="text: clientTab().countVisits"></p>
+                    </p>
+                </div>
+            </div>
+        </blockquote>
+    </aside>
+</div>

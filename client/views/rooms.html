@@ -1,0 +1,85 @@
+<div>
+    <aside class="left-side">
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <label class="filter-col">Поиск по:</label>
+                <select id="search-pattern" class="form-control" disabled>
+                <option>Номеру</option>
+        </select>
+                <input type="text" class="form-control" id="search-field" placeholder="Введите данные для поиска..." data-bind="value: searchValue">
+                <a class="btn btn-default" data-bind="click: updateTable"><span class="glyphicon glyphicon-search"></span> Найти</a>
+                <a class="btn btn-primary" data-bind="click: addRoom" style="float: right;"><span class="glyphicon glyphicon-plus"></span> Добавить</a>
+            </div>
+        </form>
+
+        <table class="table table-bordered" data-bind="visible: isVisible">
+            <thead>
+                <tr>
+                    <th class="text-center">Номер</th>
+                    <th class="text-center">Категория</th>
+                    <th class="text-center">Мест</th>
+                    <th class="text-center">Статус</th>
+                    <th class="text-center">Цена / грн</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-center" data-bind="foreach: rooms">
+                <tr>
+                    <td class="td-number" data-bind="click: $root.showInfo, text: number"></td>
+                    <td class="td-category" data-bind="click: $root.showInfo, text: categoryName"></td>
+                    <td class="td-bed" data-bind="click: $root.showInfo, text: countSeats"></td>
+                    <td class="td-status" data-bind="click: $root.showInfo, text: isEmpty == 1 ? 'Свободно' : 'Занято', 
+                    style: {color: isEmpty == 1 ? 'green' : 'red'}"></td>
+                    <td class="td-price" data-bind="click: $root.showInfo, text: price"></td>
+                </tr>
+            </tbody>
+        </table>
+    </aside>
+
+    <aside class="right-side" data-bind="visible: selectRoom">
+        <div class="info" data-bind="visible: isVisible">
+            <h3>Информация о номере: </h3>
+            <hr>
+            <div data-bind="visible: clickEdit">
+                <blockquote>
+                    <p class="lead">Номер:
+                        <p class="lead" data-bind="text: infoTab().number"></p>
+                    </p><br><br>
+                    <p class="lead">Категория:
+                        <p class="lead" data-bind="text: infoTab().category"></p>
+                    </p><br><br>
+                    <p class="lead">Кол-во мест:
+                        <p class="lead" data-bind="text: infoTab().bed"></p>
+                    </p><br><br>
+                    <p class="lead">Статус:
+                        <p class="lead" data-bind="text: infoTab().status, style: {color: isEmpty() ? 'green' : 'red'}"></p>
+                    </p><br><br>
+                    <p class="lead">Кол-во посещений:
+                        <p class="lead" data-bind="text: infoTab().count"></p>
+                    </p><br><br>
+                    <p class="lead">Цена:
+                        <p class="lead" data-bind="text: infoTab().price"></p> грн.</p><br><br>
+                </blockquote>
+                <a href="#" class="btn btn-warning" data-bind="click: editValue"><span class="glyphicon glyphicon-edit"></span> Изменить</a>
+            </div>
+
+            <div data-bind="visible: !clickEdit()">
+                <blockquote>
+                    <p>Номер: <input class="form-control" type="text" name="Номер" data-bind="value: infoTab().number"></p>
+                    <p>Категория: <select id="category" class="form-control" data-bind="options: categories,
+                                                                  optionsText: 'name',
+                                                                  optionsValue: 'idCategories', 
+                                                                  value: selectedCategory,
+                                                                  click: getCategory">
+                                    </select></p>
+                    <p>Кол-во мест: <input class="form-control" type="text" name="Места" data-bind="value: infoTab().bed"></p>
+                    <p data-bind="visible: !isInsert()">Статус: <select class="form-control" data-bind="options: status, 
+                                                                  value: infoTab().status,
+                                                                  click: getStatus">
+                                    </select></p>
+                </blockquote>
+                <a data-bind="click: saveChanges" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Сохранить</a>               
+            </div>
+        </div>
+    </aside>
+</div>

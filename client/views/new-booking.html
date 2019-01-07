@@ -1,0 +1,127 @@
+<div data-bind="visible: toggle">
+    <aside class="booking-left-side">
+        <div class="booking-top">
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <label class="filter-col">Категория: </label>
+                    <select id="category" class="form-control" data-bind="options: categories,
+                                                                  optionsText: 'name',
+                                                                  optionsValue: 'idCategories', 
+                                                                  value: selectedCategory,
+                                                                  click: getSeats">
+                    </select>
+                    <label class="filter-col">Количество мест: </label>
+                    <select id="seats" class="form-control" data-bind="options: seats,
+                                                                  optionsText: 'countSeats',
+                                                                  optionsValue: 'countSeats',
+                                                                  value: countSeats,
+                                                                  click: getCountSeats">
+                    </select>
+                    <a class="btn btn-default" data-bind="click: updateRoomTable"><span class="glyphicon glyphicon-search"></span> Найти</a>
+                </div>
+            </form>
+            <div class="tableRoomsContainer">
+                <table class="table table-bordered" data-bind="visible: rooms().length > 0">
+                    <thead class="text-center rooms-head">
+                        <tr>
+                            <th class="text-center">Номер</th>
+                            <th class="text-center">Цена</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center rooms-body" data-bind="foreach: rooms">
+                        <tr>
+                            <td data-bind="text: number, click: $root.setRoomNumber"></td>
+                            <td data-bind="text: price, click: $root.setRoomNumber"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="booking-bot">
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <label class="filter-col">Поиск по:</label>
+                    <select id="search-pattern" class="form-control">
+                            <option value="1">ФИО</option>
+                            <option value="2">Номеру телефона</option>
+                    </select>
+                    <input type="text" class="form-control" id="search-field" placeholder="Введите данные для поиска" data-bind="value: searchValue">
+                    <a class="btn btn-default" data-bind="click: updateClientsTable"><span class="glyphicon glyphicon-search"></span> Найти</a>
+                </div>
+            </form>
+            <a class="btn btn-primary" data-bind="click: addClient, visible: clients().length == 0"><span class="glyphicon glyphicon-plus"></span> Добавить клиента</a>
+            <div class="tableClientsContainer">
+                <table class="table table-bordered" data-bind="visible: clients().length > 0">
+                    <thead>
+                        <tr>
+                            <th class="text-center">ФИО</th>
+                            <th class="text-center">Телефон</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center" data-bind="foreach: clients">
+                        <tr>
+                            <td class="td-name" data-bind="text: name, click: $root.setClient"></td>
+                            <td class="td-phone" data-bind="text: phone, click: $root.setClient"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </aside>
+    <aside class="booking-right-side">
+        <blockquote>
+            <h2>Оформление заявки</h2>
+            <br>
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <p class="filter-col">Комната номер: </p>
+                    <b><p class="filter-col" data-bind="text: roomNumber().number"></p></b>
+                </div>
+            </form>
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <p class="filter-col">ФИО клиента: </p>
+                    <b><p class="filter-col" data-bind="text: client().name"></p></b>
+                </div>
+            </form>
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <p class="filter-col">Дата заселения: </p>
+                    <b><p data-bind="text: curDate"></p></b>
+                </div>
+            </form>
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <p class="filter-col">Дата выселения: </p>
+                    <b><input type="date" id="evictionDate" class="form-control" data-bind="attr: {min: minEvictionDate}"></b>
+                </div>
+            </form>
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <p class="filter-col">Количество жильцов: </p>
+                    <b><select id="availibleCountSeats" class="form-control" data-bind="options: availibleCountSeats,
+                                                                                        value: availibleCount">
+                    </select></b>
+                </div>
+            </form>
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default" data-bind="click: getPrice">Рассчитать стоимость</button>
+                </div>
+            </form>
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <p class="filter-col">Стоимость проживания: </p>
+                    <b><p class="filter-col" data-bind="text: price"></p></b>
+                    <p class="filter-col" data-bind="visible: price() != undefined">грн</p>
+                </div>
+            </form>
+            <br>
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default" data-bind="click: finishBooking">Оформить заявку</button>
+                </div>
+            </form>
+        </blockquote>
+    </aside>
+</div>

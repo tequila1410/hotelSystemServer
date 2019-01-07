@@ -1,0 +1,205 @@
+.filter-col {
+    padding-left: 10px;
+}
+
+.right-side {
+    margin-left: 65%;
+    width: 30%;
+    position: fixed;
+    margin-top: 50px;
+}
+
+.left-side {
+    width: 60%;
+    left: 10px;
+    position: absolute;
+}
+
+.current{
+    background: #c7c7c7;
+    color: black;
+    border: 1px solid black
+}
+
+.td-name {
+    width: 65%;
+}
+
+p {
+    display: inline;
+}
+
+.td-room {
+    width: 30%;
+}
+
+.form-group {
+    width: 100%;
+}
+
+.form-inline {
+    width: 100%;
+}
+
+#search-field {
+    width: 40%;
+}
+
+#room-number {
+    width: 100px;
+}
+
+.tableRoomsContainer {
+    display: block;
+    height: 100%;
+    width: 50%;
+    overflow: hidden;
+}
+
+.booking-left-side,
+.main-left-side {
+    width: 50%;
+    left: 10px;
+    position: absolute;
+}
+
+.booking-right-side,
+.main-right-side {
+    margin-left: 55%;
+    width: 45%;
+    padding-top: 20px;
+}
+
+.borderless {
+    width: 55% !important;
+}
+
+.borderless td,
+.borderless th {
+    border: none !important;
+}
+
+.bar {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.left {
+    background: #99CDFD;
+}
+
+.mid {
+    background: #63FF67;
+}
+
+.right {
+    background: #FFCF9E;
+}
+
+.value {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.booking-toggle {
+    float: right;
+    padding-right: 10%;
+}
+
+.main-top {
+    padding-left: 30px; 
+    height: 20%;
+}
+
+.booking-top {
+    height: 45%;
+}
+
+.booking-bot,
+main-bot {
+    padding-top: 2%;
+}
+
+.tableClientsContainer {
+    display: block;
+    height: 100%;
+    width: 50%;
+    overflow: hidden;
+}
+
+.clients > tbody {
+    display: block;
+    height: 200px;
+    width: 100%;
+    overflow: auto;
+}
+
+
+/*---------------------LOGIN----------------------*/
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+    font-weight: normal;
+}
+
+.form-signin .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+
+.form-signin input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.account-wall {
+    margin-top: 20px;
+    padding: 40px 0px 20px 0px;
+    background-color: #FFFFFF;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.login-title {
+    color: #555;
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+}
+
+.profile-img {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}

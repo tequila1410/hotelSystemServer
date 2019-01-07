@@ -1,0 +1,14 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav" data-bind="foreach: router.navigationModel">
+      <li class="active" data-bind="css: { active: isActive }">
+        <a data-bind="attr: { href: hash, title: title}">
+          <i class="glyphicon " data-bind="css: icon"></i> <span data-bind="html: title"></span>
+        </a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="" data-bind="click: logout"><span class="glyphicon glyphicon-log-out"></span> Выход</a></li>
+    </ul>
+  </div>
+</nav>

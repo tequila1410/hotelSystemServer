@@ -1,0 +1,24 @@
+{
+  "name": "HotelSystem",
+  "version": "0.0.2",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.0",
+    "bootstrap": "^3.3.6",
+    "cookies": "^0.6.1",
+    "durandal": "^2.1.0",
+    "express": "^4.13.4",
+    "jquery": "^2.2.2",
+    "jsonwebtoken": "^6.2.0",
+    "knockout": "^3.4.0",
+    "morgan": "^1.7.0",
+    "mysql": "^2.10.2",
+    "requirejs": "^2.2.0",
+    "serve-favicon": "^2.3.0",
+    "text": "requirejs/text",
+    "toastr": "^2.1.2",
+    "winston": "^2.2.0"
+  }
+}
