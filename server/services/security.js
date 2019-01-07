@@ -6,7 +6,6 @@ var path = require('path');
 var db = require('./mysql').getPool();
 
 function authentication(req, res, next) {
-	console.log('authentication', req);
 	db.query('SELECT login as NAME, password as PASS from personal where login = ?', [req.body.username],
 		function (err, user, fields) {
 			if (err) console.log(err);
