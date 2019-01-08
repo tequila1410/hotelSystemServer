@@ -46,7 +46,7 @@ module.exports = {
 			res.status(err.status || 500).send(err.message);
 		});
 
-		var cPort = port || 8080;
+		var cPort = port || 8081;
 		app.listen(cPort, function () {
 			log.info(`Listening for port ${cPort}.`);
 		});

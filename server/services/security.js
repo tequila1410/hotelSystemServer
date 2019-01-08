@@ -10,14 +10,18 @@ function authentication(req, res, next) {
 		function (err, user, fields) {
 			if (err) console.log(err);
 			if (user.length == 0) {
-				return res.status(401).end('Неправильный логин или пароль!');
+				return res.json({
+					success: false,
+				});
 			} else {
 				if (err) console.log(err);
 				if (req.body.password === user[0].PASS) {
 					req.user = user;
 					next();
 				} else {
-					return res.status(401).end('Неправильный логин или пароль!');
+					return res.json({
+						success: false,
+					});
 				}
 			}
 		});

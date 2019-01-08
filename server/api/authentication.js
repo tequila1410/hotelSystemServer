@@ -9,13 +9,11 @@ const jwtSecret = "HelloWorld";
 
 
 router.post('/auth/login', auth.authentication, function (req, res) {
-    console.log('req: ', req.user[0]);
     var cookies = new Cookie(req, res);
     var user = {
         "username": req.user[0].username
     };
     var token = jwt.sign(user, jwtSecret);
-    console.log('token: ', token);
     cookies.set(cookieKey, token);
     res.json({
         success: true,
@@ -40,7 +38,7 @@ router.get('/auth/verifyAuthentication', function (req, res) {
 	        msg: 'Auth verified.'
         });
     } else {
-        res.status(403).json({
+        res.status(200).json({
 	        isVerified: false,
 	        msg: 'Auth required!'
         });
