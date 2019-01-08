@@ -10,7 +10,7 @@ function authentication(req, res, next) {
 		function (err, user, fields) {
 			if (err) console.log(err);
 			if (user.length == 0) {
-				return res.json({
+				return res.status(404).json({
 					success: false,
 				});
 			} else {
@@ -19,7 +19,7 @@ function authentication(req, res, next) {
 					req.user = user;
 					next();
 				} else {
-					return res.json({
+					return res.status(404).json({
 						success: false,
 					});
 				}

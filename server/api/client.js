@@ -27,7 +27,18 @@ router.get('/client/findby/phone/:phone', function (req, res) {
 });
 
 router.post('/client/edit', function (req, res) {
-	client.updateClient(req.body.id, req.body.name, req.body.passport, req.body.phone, req.body.bdate, req.body.adress);
+	console.log(req.body);
+	client.updateClient(req.body.id, req.body.name, req.body.passport, req.body.phone, req.body.bdate, req.body.address, function(err) {
+		if (err) {
+			res.status(500).json({
+				done: false
+			})
+		} else {
+			res.status(200).json({
+				done: true
+			})
+		}
+	});
 });
 
 router.post('/client/add', function (req, res) {

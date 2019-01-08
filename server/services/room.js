@@ -81,10 +81,17 @@ function findByCategoryAndSeats(idCategory, countSeats, callback) {
 		});
 }
 
-function updateRoom(id, number, idCategory, beds, status) {
+function updateRoom(id, number, idCategory, beds, status, callback) {
 	var value = {number: number, idCategory: idCategory, countSeats: beds, isEmpty: status};
 	var where = {idRoom: id};
-	db.query('UPDATE room SET ? WHERE ?', [value, where]);
+	db.query('UPDATE room SET ? WHERE ?', [value, where], function (err) {
+		if (err) {
+			callback(err);
+			return;
+		} else {
+			callback(null);
+		}
+	});
 };
 
 function insertRoom(number, idCategory, beds, status) {

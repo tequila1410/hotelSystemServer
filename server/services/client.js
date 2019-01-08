@@ -49,10 +49,17 @@ function findByPhone(phone, callback) {
 	});
 };
 
-function updateClient(id, name, passport, mobile, birth, adress) {
-	var value = {name: name, passport: passport, address: adress, birthDate: birth, phone: mobile};
+function updateClient(id, name, passport, mobile, birth, address, callback) {
+	var value = {name: name, passport: passport, address: address, birthDate: birth, phone: mobile};
 	var where = {idClient: id};
-	db.query('UPDATE client SET ? WHERE ?', [value, where]);
+	db.query('UPDATE client SET ? WHERE ?', [value, where], function (err) {
+		if (err) {
+			callback(err);
+			return;
+		} else {
+			callback(null);
+		}
+	});
 };
 
 function insertClient(name, passport, mobile, birth, address) {
