@@ -3,6 +3,19 @@ var app = express();
 var path = require('path');
 var db = require('./mysql').getPool();
 
+function getAllClients(callback) {
+	db.query(
+		'SELECT * from client;',
+		function (err, client, fields) {
+			if (err) {
+				callback(err);
+				return;
+			} else {
+				callback(null, client);
+			}
+		});
+}
+
 function findById(id, callback) {
 	db.query('SELECT * from client where idClient = ?', [id], function (err, client, fields) {
 		if (err) {
@@ -59,5 +72,6 @@ module.exports = {
 	'findByPhone' : findByPhone,
 	'findById'    : findById,
 	'updateClient': updateClient,
-	'insertClient': insertClient
+	'insertClient': insertClient,
+	'getAllClients': getAllClients
 };

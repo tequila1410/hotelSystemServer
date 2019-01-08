@@ -1,7 +1,12 @@
 var express = require('express');
-var app = express();
 var client = require('../services/client');
 var router = express.Router();
+
+router.get('/client/get_all', function (req, res) {
+	client.getAllClients(function (err, result) {
+		res.json(result);
+	});
+});
 
 router.get('/client/findby/name/:name', function (req, res) {
 	client.findByName(req.params.name, function (err, result) {
