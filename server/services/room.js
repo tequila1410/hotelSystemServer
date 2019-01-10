@@ -113,8 +113,9 @@ function insertRoom(number, idCategory, beds, status, callback) {
 };
 
 function deleteRoom(id, callback) {
-	var where = {idRoom: id};
-	db.query('DELETE FROM room WHERE ?', [where], function(err) {
+	
+	console.log('----------------------------------', id);
+	db.query('DELETE FROM room WHERE idRoom = ?', [id], function(err) {
 		if(err) {
 			callback(err);
 			return;

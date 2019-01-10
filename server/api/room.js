@@ -63,8 +63,8 @@ router.post('/room/add', function (req, res) {
   });
 });
 
-router.delete('/room/delete', function (req, res) {
-	room.deleteRoom(req.body.idRoom, function (err) {
+router.delete('/room/delete/:id', function (req, res) {
+	room.deleteRoom(req.params.id, function (err) {
 		if(err) {
 			res.status(500).json({
 				done: false,
