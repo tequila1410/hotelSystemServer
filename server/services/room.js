@@ -105,6 +105,7 @@ function insertRoom(number, idCategory, beds, status, callback) {
 	db.query('INSERT INTO room SET ?', [attr], function(err) {
 		if(err) {
 			callback(err);
+			return;
 		} else {
 			callback(null)
 		}

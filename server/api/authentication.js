@@ -38,7 +38,7 @@ router.get('/auth/verifyAuthentication', function (req, res) {
 	        msg: 'Auth verified.'
         });
     } else {
-        res.status(404).json({
+        res.status(401).json({
 	        isVerified: false,
 	        msg: 'Auth required!'
         });

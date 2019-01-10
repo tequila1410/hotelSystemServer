@@ -49,14 +49,15 @@ router.post('/room/edit', function (req, res) {
   });
 });
 
-router.post('/room/add', function (req, res){
+router.post('/room/add', function (req, res) {
   room.insertRoom(req.body.number, req.body.category, req.body.countBed, req.body.status, function (err) {
+    console.log('---------------------------------------1', err)
     if(err) {
-      res.state(500).json({
+      res.status(500).json({
           done: false
       })
     } else {
-	    res.state(200).json({
+	    res.status(200).json({
 		    done: true
 	    })
     }
