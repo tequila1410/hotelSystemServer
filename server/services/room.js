@@ -94,7 +94,7 @@ function updateRoom(id, number, idCategory, beds, status, callback) {
 	});
 };
 
-function insertRoom(number, idCategory, beds, status) {
+function insertRoom(number, idCategory, beds, status, callback) {
 	var attr = {
 		number     : number,
 		idCategory : idCategory,
@@ -102,7 +102,13 @@ function insertRoom(number, idCategory, beds, status) {
 		countVisits: 0,
 		isEmpty    : status
 	};
-	db.query('INSERT INTO room SET ?', [attr]);
+	db.query('INSERT INTO room SET ?', [attr], function(err) {
+		if(err) {
+			callback(err);
+		} else {
+			callback(null)
+		}
+	});
 };
 
 module.exports = {
