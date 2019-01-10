@@ -112,6 +112,18 @@ function insertRoom(number, idCategory, beds, status, callback) {
 	});
 };
 
+function deleteRoom(id, callback) {
+	var where = {idRoom: id};
+	db.query('DELETE FROM room WHERE ?', [where], function(err) {
+		if(err) {
+			callback(err);
+			return;
+		} else {
+			callback(null)
+		}
+	});
+};
+
 module.exports = {
 	'getAll'                : getAll,
 	'findByNumber'          : findByNumber,
@@ -120,5 +132,6 @@ module.exports = {
 	'getSeats'              : getSeats,
 	'getEmpty'              : getEmpty,
 	'updateRoom'            : updateRoom,
-	'insertRoom'            : insertRoom
+	'insertRoom'            : insertRoom,
+	'deleteRoom' : deleteRoom
 };

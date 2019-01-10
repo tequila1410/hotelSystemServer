@@ -51,10 +51,9 @@ router.post('/room/edit', function (req, res) {
 
 router.post('/room/add', function (req, res) {
   room.insertRoom(req.body.number, req.body.category, req.body.countBed, req.body.status, function (err) {
-    console.log('---------------------------------------1', err)
     if(err) {
       res.status(500).json({
-          done: false
+          done: false,
       })
     } else {
 	    res.status(200).json({
@@ -62,6 +61,20 @@ router.post('/room/add', function (req, res) {
 	    })
     }
   });
+});
+
+router.delete('/room/delete', function (req, res) {
+	room.deleteRoom(req.body.idRoom, function (err) {
+		if(err) {
+			res.status(500).json({
+				done: false,
+			})
+		} else {
+			res.status(200).json({
+				done: true
+			})
+		}
+	});
 });
 
 router.get('/room/get/emptyRoom', function (req, res) {
