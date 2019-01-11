@@ -13,6 +13,7 @@ function addOrder(idRoom, idClient, checkInDate, evictionDate, price, countSeats
         countClients: countSeats,
         status: 1
     }
+    console.log(attr)
     db.query('INSERT INTO request SET ?', [attr]);
     db.query('UPDATE room SET isEmpty = 0 WHERE idRoom = ?', [attr.idRoom]);
     db.query('UPDATE client SET countVisits = countVisits + 1 WHERE idClient = ?', [attr.idClient]);

@@ -35,7 +35,6 @@ router.post('/room/findby/category&seats', function (req, res) {
 
 
 router.post('/room/edit', function (req, res) {
-  console.log(req.body);
   room.updateRoom(req.body.id, req.body.number, req.body.category, req.body.countBed, req.body.status, function (err, result) {
     if (err) {
       res.status(500).json({

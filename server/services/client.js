@@ -62,7 +62,7 @@ function updateClient(id, name, passport, mobile, birth, address, callback) {
 	});
 };
 
-function insertClient(name, passport, mobile, birth, address) {
+function insertClient(name, passport, mobile, birth, address, callback) {
 	var attr = {
 		name       : name,
 		passport   : passport,
@@ -71,8 +71,26 @@ function insertClient(name, passport, mobile, birth, address) {
 		phone      : mobile,
 		countVisits: 0
 	};
-	db.query('INSERT INTO client SET ?', [attr]);
+	db.query('INSERT INTO client SET ?', [attr], function(err) {
+		if (err) {
+			callback(err);
+			return;
+		} else {
+			callback(null);
+		}
+	});
 };
+
+function deleteClient(id, callback) {
+	db.query('DELETE FROM client WHERE idClient = ?', [id], function(err) {
+		if(err) {
+			callback(err);
+			return;
+		} else {
+			callback(null)
+		}
+	});
+}
 
 module.exports = {
 	'findByName'  : findByName,
@@ -80,5 +98,6 @@ module.exports = {
 	'findById'    : findById,
 	'updateClient': updateClient,
 	'insertClient': insertClient,
-	'getAllClients': getAllClients
+	'getAllClients': getAllClients,
+	'deleteClient': deleteClient
 };

@@ -27,7 +27,6 @@ router.get('/client/findby/phone/:phone', function (req, res) {
 });
 
 router.post('/client/edit', function (req, res) {
-	console.log(req.body);
 	client.updateClient(req.body.id, req.body.name, req.body.passport, req.body.phone, req.body.bdate, req.body.address, function(err) {
 		if (err) {
 			res.status(500).json({
@@ -42,7 +41,31 @@ router.post('/client/edit', function (req, res) {
 });
 
 router.post('/client/add', function (req, res) {
-	client.insertClient(req.body.name, req.body.passport, req.body.phone, req.body.bdate, req.body.address);
+	client.insertClient(req.body.name, req.body.passport, req.body.phone, req.body.bdate, req.body.address, function(err) {
+		if (err) {
+			res.status(500).json({
+				done: false
+			})
+		} else {
+			res.status(200).json({
+				done: true
+			})
+		}
+	});
+});
+
+router.delete('/client/delete/:id', function (req, res) {
+	client.deleteClient(req.params.id, function (err) {
+		if(err) {
+			res.status(500).json({
+				done: false,
+			})
+		} else {
+			res.status(200).json({
+				done: true
+			})
+		}
+	});
 });
 
 module.exports = router;

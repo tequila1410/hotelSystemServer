@@ -4,7 +4,8 @@ var booking = require('../services/booking');
 var router = express.Router();
 
 router.post('/booking/add', function (req, res) {
-	booking.addOrder(req.body.idRoom,
+	booking.addOrder(
+		req.body.idRoom,
 		req.body.idClient,
 		req.body.checkInDate,
 		req.body.evictionDate,
